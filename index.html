@@ -2,43 +2,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Roblox Live Online Counter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: #0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-size: 2em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Manual Roblox Counter</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    input {
+      font-size: 2em;
+      padding: 10px;
+      margin-top: 20px;
+      width: 150px;
+      text-align: center;
+    }
+    #display {
+      font-size: 2.2em;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-    <div>🕹️ <strong>Roblox Online Players</strong></div>
-    <div id="counter">Loading...</div>
+  <h1>🎮 Roblox Online Players</h1>
+  <p>Введите текущее количество игроков:</p>
+  <input type="number" id="input" placeholder="Например, 1042" oninput="updateDisplay()" />
+  <div id="display">🟢 Online: —</div>
 
-    <script>
-        const gameId = "110072078315694";
-        const counter = document.getElementById("counter");
-
-        async function fetchOnline() {
-            try {
-                const response = await fetch(`https://games.roblox.com/v1/games?universeIds=${gameId}`);
-                const data = await response.json();
-                const count = data.data[0].playing;
-                counter.textContent = `🟢 Online: ${count} players`;
-            } catch (e) {
-                counter.textContent = "⚠️ Failed to load";
-            }
-        }
-
-        fetchOnline();
-        setInterval(fetchOnline, 10000); // обновление каждые 10 секунд
-    </script>
+  <script>
+    function updateDisplay() {
+      const val = document.getElementById('input').value;
+      const text = val ? `🟢 Online: ${val} players` : '🟢 Online: —';
+      document.getElementById('display').textContent = text;
+    }
+  </script>
 </body>
 </html>
