@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manual Roblox Counter</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    input {
+      font-size: 2em;
+      padding: 10px;
+      margin-top: 20px;
+      width: 150px;
+      text-align: center;
+    }
+    #display {
+      font-size: 2.2em;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Roblox Online Players</h1>
+  <p>Введите текущее количество игроков:</p>
+  <input type="number" id="input" placeholder="Например, 1042" oninput="updateDisplay()" />
+  <div id="display">🟢 Online: —</div>
+
+  <script>
+    function updateDisplay() {
+      const val = document.getElementById('input').value;
+      const text = val ? `🟢 Online: ${val} players` : '🟢 Online: —';
+      document.getElementById('display').textContent = text;
+    }
+  </script>
+</body>
+</html>
